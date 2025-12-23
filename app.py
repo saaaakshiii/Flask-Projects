@@ -6,6 +6,8 @@ app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///test.db' # Telling our app where the DB is located
 # ///-relative path, ////-absolute path
 db=SQLAlchemy(app)
+with app.app_context():
+    db.create_all()
 
 class Todo(db.Model):
     id=db.Column(db.Integer, primary_key=True)
